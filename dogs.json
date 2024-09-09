@@ -1,0 +1,28 @@
+[
+    {"breedId":"B101",
+    "breedName":"Golden Retriever",
+    "description":"Friendly,intelligent, and devoted. Great family dog.",
+    "size": "Large",
+    "lifespan": "10-12 years",
+    "origin":"Scotland",
+    "imageURL":"https://dog.ceo/api/img/retriever/golden/n02099601_3004.jpg"
+},
+{
+    "breedId":"B102",
+    "breedName":"Rottweiler",
+    "description":"Intelligent, active, and elegant. Great for families with allergies.",
+    "size": "Small",
+    "lifespan": "12-15 years",
+    "origin":"Italy",
+    "imageURL":"https://images.dog.ceo/breeds/appenzeller/n02107908_4903.jpg"
+},
+{
+    "breedId":"B103",
+    "breedName":"Bulldog",
+    "description":"Intelligent, active, and smart. Great for couples",
+    "size": "Big",
+    "lifespan": "15-17 years",
+    "origin":"Germany",
+    "imageURL":"https://images.dog.ceo/breeds/mastiff-bull/n02108422_1096.jpg"
+}
+]

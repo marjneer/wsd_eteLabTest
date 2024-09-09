@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input.valid {
+            border-color: green;
+        }
+        .form-group input.invalid {
+            border-color: red;
+        }
+        .form-group .feedback {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: red;
+        }
+        .form-group .feedback.valid {
+            color: green;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>Register here!</h2>
+    <form id="form">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <div class="feedback" id="nameFeedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone No:</label>
+            <input type="number" id="phone" name="phone" required>
+            <div class="feedback" id="phoneFeedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="feedback" id="passwordFeedback"></div>
+        </div>
+        <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const passwordInput = document.getElementById('password');
+            const submitBtn = document.getElementById('submitBtn');
+
+            function showFeedback(element, message, isValid) {
+                const feedbackElement = document.getElementById(element.id + 'Feedback');
+                feedbackElement.textContent = message;
+                if (isValid) {
+                    feedbackElement.classList.remove('invalid');
+                    feedbackElement.classList.add('valid');
+                    element.classList.remove('invalid');
+                    element.classList.add('valid');
+                } else {
+                    feedbackElement.classList.remove('valid');
+                    feedbackElement.classList.add('invalid');
+                    element.classList.remove('valid');
+                    element.classList.add('invalid');
+                }
+            }
+
+            function validateName() {
+                const name = nameInput.value.trim();
+                if (name.length >= 3) {
+                    showFeedback(nameInput, 'Valid', true);
+                    return true;
+                } else {
+                    showFeedback(nameInput, 'Name must be at least 3 characters long.', false);
+                    return false;
+                }
+            }
+
+            function validatePhone() {
+                const phone = phoneInput.value.trim();
+                if (phone.length === 10) {
+                    showFeedback(phoneInput, 'Valid', true);
+                    return true;
+                } else {
+                    showFeedback(phoneInput, 'Phone number must be 10 digits', false);
+                    return false;
+                }
+            }
+
+            function validatePassword() {
+                const password = passwordInput.value.trim();
+                if (password.length >= 6) {
+                    showFeedback(passwordInput, 'Strong', true);
+                    return true;
+                } else {
+                    showFeedback(passwordInput, 'Password must be at least 6 characters long.', false);
+                    return false;
+                }
+            }
+
+            function enableSubmit() {
+                if (validateName() && validatePhone() && validatePassword()) {
+                    submitBtn.disabled = false;
+                } else {
+                    submitBtn.disabled = true;
+                }
+            }
+
+            nameInput.addEventListener('input', validateName);
+            phoneInput.addEventListener('input', validatePhone);
+            passwordInput.addEventListener('input', validatePassword);
+            form.addEventListener('input', enableSubmit);
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (validateName() && validatePhone() && validatePassword()) {
+                    alert('Form submitted successfully!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
